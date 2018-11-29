@@ -17,7 +17,7 @@ The MetaWear hardware comes pre-loaded with a wirelessly upgradeable firmware, s
 
 ## Foreword
 
-These scripts have only been test on Windows and Matlab R2018a
+These scripts have only been tested on Windows and Matlab R2018a
 
 # Improve Our Tutorial (Pull-Request)
 
