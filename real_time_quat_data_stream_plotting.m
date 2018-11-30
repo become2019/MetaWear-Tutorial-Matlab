@@ -34,7 +34,7 @@ interfaceObject.BytesAvailableFcnMode = 'terminator';
 fopen(interfaceObject);
 
 % Get some data from socket (python server)
-pause(15);
+pause(20);
 
 % Clean up the interface object
 hold off;
@@ -53,7 +53,7 @@ global roll_c
 % Read the json incoming from socket
 data = fscanf(interfaceObject);
 % Debug statement
-%disp(data);
+disp(data);
 % Decode json
 temp = jsondecode(data);
 % Convert Quaternion to Roll Pitch Yaw

@@ -55,7 +55,7 @@ for s in states:
     libmetawear.mbl_mw_acc_enable_acceleration_sampling(s.device.board)
     libmetawear.mbl_mw_acc_start(s.device.board)
 
-sleep(4.0)
+sleep(10.0)
 
 for s in states:
     libmetawear.mbl_mw_acc_stop(s.device.board)

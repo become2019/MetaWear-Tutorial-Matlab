@@ -17,27 +17,23 @@ interfaceObject.BytesAvailableFcnMode = 'terminator';
 % Open the interface object
 fopen(interfaceObject);
 
-% Get some data from socket (python server)
+% Get some data from socket (python server) for 15 seconds
 pause(15);
 
 % Download data from FIFOs into arrays
 outx = zeros(1,1000);
 outy = zeros(1,1000);
 outz = zeros(1,1000);
-index = 0;
-while index < asyncXBuff.NumUnreadSamples
-    outx = peek(asyncXBuff,index);
-    outy = peek(asyncYBuff,index);
-    outz = peek(asyncZBuff,index);
-    index=index+1;
-end
+outx = read(asyncXBuff);
+outy = read(asyncYBuff);
+outz = read(asyncZBuff);
 
 % Plot x,y,z, accelerometer data
 hold on;
-%plot3(outx,outy,outz,'b');
 plot(outx,'r')
 plot(outy,'g')
 plot(outz,'b')
+%plot3(outx,outy,outz,'b');
 
 % Clean up the interface object
 hold off;

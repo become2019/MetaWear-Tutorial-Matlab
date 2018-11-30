@@ -31,8 +31,8 @@ class State:
         print("%s -> %s" % (self.device.address, parse_value(data)))
         self.samples+= 1
         temp_data = parse_value(data)
-        #temp = json.dumps({'w': temp_data.w, 'x': temp_data.x, 'y':temp_data.y, 'z':temp_data.z})
         temp = json.dumps({'pitch': temp_data.pitch, 'yaw':temp_data.yaw, 'roll':temp_data.roll})
+        #temp = json.dumps({'w': temp_data.w, 'x': temp_data.x, 'y':temp_data.y, 'z':temp_data.z})
         print(temp)
         conn.sendall(temp)
 
@@ -53,21 +53,24 @@ for s in states:
     libmetawear.mbl_mw_sensor_fusion_write_config(s.device.board);
 
     signal = libmetawear.mbl_mw_sensor_fusion_get_data_signal(s.device.board, SensorFusionData.EULER_ANGLE)
+    #signal = libmetawear.mbl_mw_sensor_fusion_get_data_signal(s.device.board, SensorFusionData.QUATERNION)
     libmetawear.mbl_mw_datasignal_subscribe(signal, None, s.callback)
     
     libmetawear.mbl_mw_sensor_fusion_enable_data(s.device.board, SensorFusionData.EULER_ANGLE);
+    #libmetawear.mbl_mw_sensor_fusion_enable_data(s.device.board, SensorFusionData.QUATERNION);
     libmetawear.mbl_mw_sensor_fusion_start(s.device.board)
 
-    sleep(10.0)
+    sleep(1.0)
 
 for s in states:
     libmetawear.mbl_mw_sensor_fusion_stop(s.device.board)
 
-    signal = libmetawear.mbl_mw_sensor_fusion_get_data_signal(s.device.board, SensorFusionData.QUATERNION)
+    signal = libmetawear.mbl_mw_sensor_fusion_get_data_signal(s.device.board, SensorFusionData.EULER_ANGLE)
+    #signal = libmetawear.mbl_mw_sensor_fusion_get_data_signal(s.device.board, SensorFusionData.QUATERNION)
     libmetawear.mbl_mw_datasignal_unsubscribe(signal)
     libmetawear.mbl_mw_debug_disconnect(s.device.board)
 
-sleep(1.0)
+sleep(10.0)
 
 conn.close()
 
