@@ -9,6 +9,10 @@ MetaWear features a number of sensors and peripherals all easily controllable ov
 
 The MetaWear hardware comes pre-loaded with a wirelessly upgradeable firmware, so it keeps getting more powerful over time.
 
+## Tutorials
+
+Follow the Tutorial [here](https://mbientlab.com/tutorials/Matlab.html).
+
 ## Requirements
 
 - [MetaWear board](https://mbientlab.com/store/)
