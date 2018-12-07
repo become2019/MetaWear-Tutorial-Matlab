@@ -1,4 +1,4 @@
-# usage: python echo_acc_server.py [mac]
+# usage: python echo_gyro_server.py [mac]
 from mbientlab.metawear import MetaWear, libmetawear, parse_value
 from mbientlab.metawear.cbindings import *
 from time import sleep
@@ -45,23 +45,23 @@ for i in range(len(sys.argv) - 1):
 for s in states:
     print("Configuring device")
     libmetawear.mbl_mw_settings_set_connection_parameters(s.device.board, 1.5, 1.5, 0, 6000)
-    libmetawear.mbl_mw_acc_set_odr(s.device.board, 50.0)
-    libmetawear.mbl_mw_acc_set_range(s.device.board, 16.0)
-    libmetawear.mbl_mw_acc_write_acceleration_config(s.device.board)
+    libmetawear.mbl_mw_gyro_bmi160_set_odr(s.device.board, AccBmi160Odr._50Hz)
+    libmetawear.mbl_mw_gyro_bmi160_set_range(s.device.board, AccBoschRange._125dps)
+    libmetawear.mbl_mw_gyro_bmi160_write_config(s.device.board)
 
-    signal = libmetawear.mbl_mw_acc_get_acceleration_data_signal(s.device.board)
+    signal = libmetawear.mbl_mw_gyro_bmi160_get_rotation_data_signal(s.device.board)
     libmetawear.mbl_mw_datasignal_subscribe(signal, None, s.callback)
 
-    libmetawear.mbl_mw_acc_enable_acceleration_sampling(s.device.board)
-    libmetawear.mbl_mw_acc_start(s.device.board)
+    libmetawear.mbl_mw_gyro_bmi160_enable_rotation_sampling(s.device.board)
+    libmetawear.mbl_mw_gyro_bmi160_start(s.device.board)
 
-sleep(15.0)
+sleep(10.0)
 
 for s in states:
-    libmetawear.mbl_mw_acc_stop(s.device.board)
-    libmetawear.mbl_mw_acc_disable_acceleration_sampling(s.device.board)
+    libmetawear.mbl_mw_gyro_bmi160_stop(s.device.board)
+    libmetawear.libmetawear.mbl_mw_gyro_bmi160_disable_rotation_sampling(s.device.board)
 
-    signal = libmetawear.mbl_mw_acc_get_acceleration_data_signal(s.device.board)
+    signal = libmetawear.mbl_mw_gyro_bmi160_get_rotation_data_signal(s.device.board)
     libmetawear.mbl_mw_datasignal_unsubscribe(signal)
     libmetawear.mbl_mw_debug_disconnect(s.device.board)
 
