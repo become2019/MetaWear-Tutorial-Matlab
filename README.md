@@ -1,5 +1,8 @@
 # MetaWear-Tutorial-Matlab
-Matlab example scripts for the MetaWear platform. Stream data live from a MetaSensor using Bluetooth and a TCP socket (in Python). This repository includes both Python (.py) and Matlab (.m) scripts.
+
+Matlab example scripts for the MetaWear platform. 
+
+Stream data live from a MetaSensor using Bluetooth and a TCP socket (in Python). This repository includes both Python (.py) and Matlab (.m) scripts.
 
 ## Overview
 
